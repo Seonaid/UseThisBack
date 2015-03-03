@@ -1,0 +1,23 @@
+//
+   Created by seonaid on 15-01-25.
+
+extends layout
+
+block content
+   .container
+      .login.group
+         h2 Start Saving Food!
+         form(method = "post" action ="register")
+            #userCheck
+               label Username:
+               input#username(name="username")
+               #response
+            div
+               p
+                  label Password:
+                  input#password(type = "password", name="password")
+               p
+                  input.btn-default(type ="submit", value = "Register")
+         a(href="./login") I already have an account.
+         p or... Login with
+         button.button Twitter

@@ -1,0 +1,22 @@
+//
+   Created by seonaid on 14-11-24.
+extends layout
+
+block content
+   .container
+      .login.group
+         h2 Login
+         form(method = "post" action="/login")
+            #userCheck
+               label Username:
+               input#username(name="username")
+               #response
+               input(type = "hidden" value= redirect name = "redirect")
+            div
+               p
+                  label Password:
+                  input#password(type = "password", name = "password")
+               p
+                  input.btn-default(type = "submit", value = "Log In")
+
+         a(href="./register") I don't have an account.
