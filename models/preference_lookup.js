@@ -8,11 +8,12 @@
 
 module.exports = function(sequelize, DataTypes){
     var PreferenceLookup = sequelize.define("PreferenceLookup", {
-        : DataTypes.STRING
+        displayValue : DataTypes.STRING,
+        yummlyApiValue: DataTypes.STRING()
     }, {
         classMethods: {
             associate: function(models) {
-                PreferenceLookup.hasMany(models.User, {through: 'UserPreference'});
+                PreferenceLookup.belongsToMany(models.User, {through: 'UserPreference'});
             }
         }
     });

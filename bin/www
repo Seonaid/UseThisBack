@@ -20,13 +20,15 @@ app.set('port', port);
 // then initialize the server with the database connection (as defined in ../models/index.js
 // for development, I can add force:true
 
-models.sequelize.sync().then(function(){
     /**
      * Create HTTP server.
      */
 
     var server = http.createServer(app);
 
+models.sequelize.sync({
+    force: true
+}).then(function(){
     /**
      * Listen on provided port, on all network interfaces.
      */

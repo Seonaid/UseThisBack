@@ -8,8 +8,8 @@
 
 module.exports = function(sequelize, DataTypes){
     var Food = sequelize.define("Food", {
-        food_name: DataTypes.STRING,
-        use_by: DataTypes.DATE
+        foodName: {type: DataTypes.STRING, allowNull: false},
+        useBy: {type: DataTypes.DATE, allowNull: false}
     }, {
         classMethods: {
             associate: function(models) {

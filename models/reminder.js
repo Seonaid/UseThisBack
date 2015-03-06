@@ -9,8 +9,7 @@
 
 module.exports = function(sequelize, DataTypes){
     var Reminder = sequelize.define("Reminder", {
-        time: DataTypes.STRING,
-        use_by: DataTypes.DATE
+        time: {type: DataTypes.INTEGER, defaultValue: 16}
     }, {
         classMethods: {
             associate: function(models) {
@@ -19,5 +18,5 @@ module.exports = function(sequelize, DataTypes){
         }
     });
 
-    return Food;
+    return Reminder;
 };
