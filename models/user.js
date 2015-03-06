@@ -6,12 +6,13 @@
 
 module.exports = function(sequelize, DataTypes){
     var User = sequelize.define("User", {
-        user_name: {type: DataTypes.STRING, allowNull: false},
+        email: {type: DataTypes.STRING, allowNull: false, isEmail: true},
         salted_password: {type: DataTypes.STRING, allowNull: false},
     }, {
         classMethods: {
             associate: function(models) {
-                User.hasMany(models.Food)
+                User.hasMany(models.Food);
+                User.belongsToMany(models.PreferenceLookup, {through: 'UserPreference'})
             }
         }
     });

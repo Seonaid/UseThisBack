@@ -1,19 +1,18 @@
 /**
- * Created by seonaid on 14-12-18.
+ * Created by seonaid on March 3, 2015.
  */
 "use strict"
 
 module.exports = function(sequelize, DataTypes){
     var Preference = sequelize.define("Preference", {
-        Contribution_name: DataTypes.STRING
+        : DataTypes.STRING
     }, {
     classMethods: {
         associate: function(models) {
-            Preference.belongsTo(models.User);
-            Preference.hasOne(Contribution, { as: 'parent', foreignKey: 'parentId' });
+            Preference.hasMany(models.User);
         }
     }
 });
 
-return Contribution;
+return Preference;
 }
