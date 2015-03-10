@@ -7,17 +7,34 @@ var LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var models = require('../models');
 var bcrypt = require('bcrypt-nodejs');
-// var User = require('../models/user); ??
+
+models.User.generateHash = function(password){
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
 module.exports = function(passport){
+
+    // add back in session management: serialize and deserialize are part of that, and the whole thing
+    //doesn't work without this. AUGH!!!
+
     passport.serializeUser(function(user, done){
+        // add user.id to http request to maintain the session
         done(null, user.id);
     });
 
     passport.deserializeUser(function(id, done){
-        models.User.findOne(id, function(err, user){
-            done(err, user);
-        });
+        console.log('deserialize id is ' + id);
+        // in this case, "deserialize" means "retrieve user from database using id as the lookup"
+        models.User.findOne({where: {id: id}}).then(
+
+        function(user){
+            if(user){
+                done(null, user);
+            }
+        }, function(err){
+            done(err);
+        }
+        );
     });
 
     passport.use('register', new LocalStrategy({
@@ -26,7 +43,7 @@ module.exports = function(passport){
         passReqToCallback: true
     },
     function(req, email, password, done) {
-        var hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+        var hashedPassword = models.User.generateHash(password);
 
         models.User.findOne({where: {email: email}}).then(
             function(user){
@@ -67,9 +84,9 @@ module.exports = function(passport){
                     if(user){
                         console.log('logging in ' + email);
                         // we have somebody with that email! Now, check their password.
-                        var hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                        console.log(hashedPassword + ' ' + user.hashedPassword);
-                        if(hashedPassword === user.hashedPassword){
+                        var passwordIsValid = bcrypt.compareSync(password, user.hashedPassword);
+
+                        if(passwordIsValid){
                             return done(null,user);
                         } else {
                             console.log('wrong password');

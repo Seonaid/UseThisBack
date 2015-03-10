@@ -21,8 +21,13 @@ router.get('/login', function(req, res){
 });
 
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/',
+    successRedirect: '/fridge',
     failureRedirect: '/login'
 }));
+
+router.get('/fridge', function(req, res){
+    console.log('getting fridge for ' + req.user.email);
+    res.render('fridge', {title: 'UseThis'});
+});
 
 module.exports = router;

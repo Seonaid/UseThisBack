@@ -26,8 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({ secret: 'somethingmysterious'}));
 app.use(passport.initialize());
-//app.use(passport.session());
-//app.use(flash());
+app.use(passport.session());
+app.use(flash());
 
 // configures passport
 require('./config/passport')(passport);

@@ -26,7 +26,7 @@ var server = http.createServer(app);
 // then initialize the server with the database connection (as defined in ../models/index.js
 // for development, I can add force:true, which reconstructs the database each time the server is run.
 
-models.sequelize.sync({force: true}
+models.sequelize.sync(//{force: true}
 ).then(function(){
     /**
      * Listen on provided port, on all network interfaces.
