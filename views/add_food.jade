@@ -1,0 +1,19 @@
+//
+   Created by seonaid on 15-03-10.
+
+extends layout
+
+block content
+    h1 Add food to your fridge
+    form(method = "post", action="/add_food")
+        input(type="text", placeholder="What do you have to eat?", name = "food_name")
+        input(type="text", placeholder = "Eat within", name = "how_many")
+
+        p days
+            input(type="radio", name="category", value="days")
+        p weeks
+            input(type="radio", name="category", value="weeks")
+        p months
+            input(type="radio", name="category", value="months")
+
+        p: button Add

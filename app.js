@@ -9,6 +9,7 @@ var expressSession = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 var flash    = require('connect-flash');
 
 var app = express();
@@ -34,6 +35,7 @@ require('./config/passport')(passport);
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
 
 
 
