@@ -10,10 +10,11 @@ block content
         input(type="text", placeholder = "Eat within", name = "how_many")
 
         p days
-            input(type="radio", name="category", value="days")
+            input(type="radio", name="time_period", value="days")
         p weeks
-            input(type="radio", name="category", value="weeks")
+            input(type="radio", name="time_period", value="weeks")
         p months
-            input(type="radio", name="category", value="months")
+            input(type="radio", name="time_period", value="months")
 
         p: button Add
+    a(href="/fridge"): button See Fridge

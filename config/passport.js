@@ -25,7 +25,9 @@ module.exports = function(passport){
     passport.deserializeUser(function(id, done){
         console.log('deserialize id is ' + id);
         // in this case, "deserialize" means "retrieve user from database using id as the lookup"
-        models.User.findOne({where: {id: id}}).then(
+        // includ: [Food] should also give us the contents of the food table for this user, but it doesn't work
+
+        models.User.findOne({where: {id: id}}, {include: [models.Food]}).then(
 
         function(user){
             if(user){

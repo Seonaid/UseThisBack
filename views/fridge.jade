@@ -7,4 +7,12 @@ block content
     h1= title
 
     p Hi! This is what's in your fridge.
+
+    if foods
+        .foods
+        for food in foods
+            h2= food.foodName
+            p Use By
+            p= food.useBy
+
     a(href="/add_food"): button Add item
