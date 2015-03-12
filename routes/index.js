@@ -64,17 +64,6 @@ router.post('/add_food', function(req, res){
 
     });
 
-    //user.addFood(newFood).then(
-    //    function(user){
-    //        console.log(newFood.food_name + ' added');
-    //        done(null);
-    //    },
-    //    function(error){
-    //        console.log('adding food failed');
-    //        done(err);
-    //    }
-    //);
-
     res.render('add_food', {id : req.user.id});
 });
 
