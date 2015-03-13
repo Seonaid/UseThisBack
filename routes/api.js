@@ -9,7 +9,11 @@ var bodyParser = require('body-parser');
 
 router.get('/', function(req, res){
     console.log('in api ');
-    res.header("Access-Control-Allow-Origin", "http://localhost:8100");
+    var data = req.body;
+    console.log(data);
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
     models.User.findOne({where: {id: 1},
@@ -38,7 +42,7 @@ router.post('/login', function(req, res){
             });
         }
         else {  //success!  return the successful status and the id of the logged in user
-
+// load up the foods for the user and send them back with the login success so they can be displayed on the fridge tab
             models.Food.findAll({where: {UserId: user.id}}).then(function(foods){
                 console.log(JSON.stringify(foods));
                 return res.json({
@@ -52,6 +56,54 @@ router.post('/login', function(req, res){
         }
     })(req, res);
 
+});
+
+router.options('/:name', function(req, res){
+    res.header("Access-Control-Allow-Origin" , "*");
+    res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
+    return res.json({msg: 'OK'});
+});
+
+router.post('/add_food', function(req, res){
+ //   console.log('adding food for ' + req.user.email);
+    var user = req.body.user;
+    var data = req.body.newFood;
+//console.log('at least I got here!');
+//    console.log(req.body);
+    var newFood = {};
+    var expiresOn = Date.today();
+    newFood.foodName = data.foodName;
+    var useBy = parseInt(data.how_many);
+    console.log('time period: ' + data.time_period);
+
+    switch(data.time_period) {
+        case 'days':
+            expiresOn = expiresOn.add({days: useBy});
+            break;
+        case 'weeks':
+            expiresOn = expiresOn.add({weeks: useBy});
+            break;
+        case 'months':
+            expiresOn = expiresOn.add({months: useBy});
+            break;
+    }
+
+    newFood.useBy = expiresOn;
+    newFood.UserId = user.id;
+
+    console.log('New food: ' + JSON.stringify(newFood));
+    models.Food.create(newFood).then(function(food) {
+        console.log('Created food in database');
+    }, function(error){
+        console.log('Didn\'t work.');
+
+    });
+    res.header("Access-Control-Allow-Origin" , "*");
+    //res.header("Access-Control-Allow-Methods", "POST");
+    //res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
+
+    return res.json({id : user.id});
 });
 
 module.exports = router;

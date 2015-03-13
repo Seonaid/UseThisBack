@@ -60,7 +60,7 @@ router.post('/add_food', function(req, res){
     models.Food.create(newFood).then(function(food) {
         console.log('Created food in database');
     }, function(error){
-        console.log('Didn\'t work. Surprise surprise.');
+        console.log('Didn\'t work.');
 
     });
 
