@@ -15,7 +15,7 @@ router.get('/', function(req, res){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-
+    //
     models.User.findOne({where: {id: 1},
         include: [models.Food]}).then(function(user){
         res.statusCode = 200;
@@ -25,7 +25,8 @@ router.get('/', function(req, res){
 
 router.post('/login', function(req, res){
     console.log('in login function from API');
-    console.log('user email is ' + req.body.email);
+    console.log(req.body);
+ //   console.log('user email is ' + req.body.email);
 
     passport.authenticate('local-login', function(err, user, info) {
 
@@ -45,6 +46,7 @@ router.post('/login', function(req, res){
 // load up the foods for the user and send them back with the login success so they can be displayed on the fridge tab
             models.Food.findAll({where: {UserId: user.id}}).then(function(foods){
                 console.log(JSON.stringify(foods));
+                res.header("Access-Control-Allow-Origin" , "*");
                 return res.json({
                     'loginStatus' : 'success',
                     'user' : user,
@@ -92,18 +94,21 @@ router.post('/add_food', function(req, res){
     newFood.useBy = expiresOn;
     newFood.UserId = user.id;
 
+    res.header("Access-Control-Allow-Origin" , "*");
+
     console.log('New food: ' + JSON.stringify(newFood));
     models.Food.create(newFood).then(function(food) {
         console.log('Created food in database');
+        return res.json(food);
     }, function(error){
         console.log('Didn\'t work.');
 
     });
-    res.header("Access-Control-Allow-Origin" , "*");
+
     //res.header("Access-Control-Allow-Methods", "POST");
     //res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
 
-    return res.json({id : user.id});
+
 });
 
 module.exports = router;
