@@ -62,7 +62,7 @@ router.post('/login', function(req, res){
 
 router.options('/:name', function(req, res){
     res.header("Access-Control-Allow-Origin" , "*");
-    res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
+    //res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
     return res.json({msg: 'OK'});
 });
@@ -104,10 +104,6 @@ router.post('/add_food', function(req, res){
         console.log('Didn\'t work.');
 
     });
-
-    //res.header("Access-Control-Allow-Methods", "POST");
-    //res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
-
 
 });
 
