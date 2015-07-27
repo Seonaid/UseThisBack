@@ -20,14 +20,11 @@ var db        = {};
 
 sequelize
     .authenticate()
-    .complete(function(err){
-        if(!!err){
-            console.log('Unable to connect to database', err)
-        }
-        else {
-            console.log('Connection established')
-        }
-    })
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  }, function (err) { 
+    console.log('Unable to connect to the database:', err);
+  });
 
 // use fs to loop through all the model definition files
 fs
