@@ -3,7 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/materialize.css')
   body
     block content
-    if message
-      p #{message}
+
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='/javascripts/materialize.js')
+    script(src='/javascripts/select.js')

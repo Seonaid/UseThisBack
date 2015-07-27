@@ -4,17 +4,20 @@
 extends layout
 
 block content
-    h1 Add food to your fridge
-    form(method = "post", action="/add_food")
-        input(type="text", placeholder="What do you have to eat?", name = "food_name")
-        input(type="text", placeholder = "Eat within", name = "how_many")
-
-        p days
-            input(type="radio", name="time_period", value="days")
-        p weeks
-            input(type="radio", name="time_period", value="weeks")
-        p months
-            input(type="radio", name="time_period", value="months")
-
-        p: button Add
-    a(href="/fridge"): button See Fridge
+    .container
+        .row
+            .col
+                h1 Add food to your fridge
+                form(method = "post", action="/add_food")
+                    .input-field
+                        input(type="text", placeholder="What do you have to eat?", name = "food_name")
+                    .input-field
+                        input(type="text", placeholder = "Eat within", name = "how_many")
+                    .input-field
+                        select(name="time_period")
+                          option.disabled.selected(value="") Time period
+                          option(value="days") Days
+                          option(value="weeks") Weeks
+                          option(value="months") Months
+                    button.btn Add  
+                    a.btn.right(href="/fridge") Fridge

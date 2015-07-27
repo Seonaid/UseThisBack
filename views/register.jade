@@ -7,15 +7,22 @@ block content
    .container
       .login.group
          h2 Start Saving Food!
-         form(method = "post" action ="/register")
-            #userCheck
-               label Username:
-               input#username(name="email")
-               #response
-            div
+         .row
+            .col.m12
+               form(method = "post" action="/register")
+                  .input-field
+                     input#email.validate(name="email", type="email", placeholder = "email")
+                     #response
+                        if message
+                           p #{message}
+                     input(type = "hidden" value= redirect name = "redirect")
+                  div
+                     p
+                        input#password(type = "password", name = "password", placeholder = "Password")
+                     p
+                        input.btn.right(type = "submit", value = "Register")
+
+         .row
+            .col.m12
                p
-                  label Password:
-                  input#password(type = "password", name="password")
-               p
-                  input.btn-default(type ="submit", value = "Register")
-         a(href="./login") I already have an account.
+                  a.right(href="./login") I already have an account.

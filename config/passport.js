@@ -50,7 +50,8 @@ module.exports = function(passport){
         models.User.findOne({where: {email: email}}).then(
             function(user){
                 if(user){
-                    return done(null, false/*, req.flash('signupMessage', 'That email is already registered.')*/);
+                    console.log('email already registered' + user.email)
+                    return done(null, false, req.flash('signupMessage', 'That email is already registered.'));
                 } else {
                     console.log('adding ' + email);
                     models.User.create({

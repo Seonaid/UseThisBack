@@ -6,17 +6,22 @@ block content
    .container
       .login.group
          h2 Login
-         form(method = "post" action="/login")
-            #userCheck
-               label email:
-               input#username(name="email")
-               #response
-               input(type = "hidden" value= redirect name = "redirect")
-            div
-               p
-                  label Password:
-                  input#password(type = "password", name = "password")
-               p
-                  input.btn-default(type = "submit", value = "Log In")
+         .row
+            .col.m12
+               form(method = "post" action="/login")
+                  .input-field
+                     input#email.validate(name="email", type="email", placeholder = "email")
+                     #response
+                        if message
+                           p #{message}
+                     input(type = "hidden" value= redirect name = "redirect")
+                  div
+                     p
+                        input#password(type = "password", name = "password", placeholder = "Password")
+                     p
+                        input.btn.right(type = "submit", value = "Log In")
 
-         a(href="./register") I don't have an account.
+         .row
+            .col.m12
+               p
+                  a.right(href="./register") I don't have an account.

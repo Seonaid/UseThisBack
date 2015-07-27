@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register');
+    res.render('register', {message: req.flash('signupMessage')});
 });
 
 router.post('/register',passport.authenticate('register', {
