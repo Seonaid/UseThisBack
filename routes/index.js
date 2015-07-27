@@ -15,16 +15,18 @@ router.get('/register', function(req, res) {
 
 router.post('/register',passport.authenticate('register', {
     successRedirect: '/fridge',
-    failureRedirect: '/register'
+    failureRedirect: '/register',
+    failureFlash: true
 }));
 
 router.get('/login', function(req, res){
-    res.render('login');
+    res.render('login', {message: req.flash('loginMessage')});
 });
 
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/fridge',
-    failureRedirect: '/login'
+    failureRedirect: '/login',    
+    failureFlash: true
 }));
 
 router.get('/add_food', function(req, res){

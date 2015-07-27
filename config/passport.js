@@ -92,12 +92,12 @@ module.exports = function(passport){
                             return done(null,user);
                         } else {
                             console.log('wrong password');
-                            return done(null, false/*, req.flash('loginMessage', 'Password invalid (change after dev!')*/);
+                            return done(null, false, req.flash('loginMessage', 'Password invalid (change after dev!)'));
                         }
                     } else {
                          // there is nobody here by that name. return an error.
                         console.log('there is nobody with ' + email);
-                        return done(null, false/*, req.flash('loginMessage', 'No such user')*/);
+                        return done(null, false, req.flash('loginMessage', 'No such user'));
                     }
                 },
                 function(err){
