@@ -69,6 +69,21 @@ router.post('/add_food', function(req, res){
     res.render('add_food', {id : req.user.id});
 });
 
+router.post('/delete_food', function(req, res){
+    console.log('deleting food for ' + req.user.email);
+    var user = req.user;
+    var data = req.body;
+
+    deleteFoodId = data.foodId;
+    models.Food.find(deleteFoodId).then(function(food) { 
+        food.destroy(deleteFoodId).then( function(u){
+            console.log('succesfully deleted');
+            res.redirect('fridge');
+        });
+
+    });
+});
+
 router.get('/fridge', function(req, res){
     console.log('getting fridge for ' + req.user.email);
 //    console.log(req.user);

@@ -13,7 +13,7 @@ router.get('/', function(req, res){
     console.log(data);
 
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     //
     models.User.findOne({where: {id: 1},
@@ -61,9 +61,9 @@ router.post('/login', function(req, res){
 });
 
 router.options('/:name', function(req, res){
-    res.header("Access-Control-Allow-Origin" , "*");
-    //res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
+    res.setheader("Access-Control-Allow-Origin" , "*");
+    res.setheader("Access-Control-Allow-Methods", "GET, OPTIONS, DELETE");
+    res.setheader("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization,Access-Control-Allow-Origin");
     return res.json({msg: 'OK'});
 });
 
@@ -106,5 +106,35 @@ router.post('/add_food', function(req, res){
     });
 
 });
+
+router.delete('/delete_food/:id', function(req, res){
+    var foodId = req.params.id;
+
+    if(req.params.id) {
+        res.statusCode = 404;
+        return res.send('nothing!');
+    }  
+
+    console.log('Incoming request to delete ' + foodId);
+    
+    res.header("Accept", "application/json");
+    res.setheader('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+    models.Food.find(foodId).then(function(food) { 
+        food.destroy(foodId).then( function(u){
+            console.log('succesfully deleted');
+            res.statusCode = 200;
+            return res.json(user);
+        }, function(error){
+            console.log("I refused a perfectly valid request because I'm a jerk.")
+        });
+
+    });
+    
+
+});
+
 
 module.exports = router;

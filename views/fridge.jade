@@ -14,5 +14,8 @@ block content
             h5= food.foodName
             p Use By
             p= food.useBy
+            form(method="post" action="/delete_food")
+                input(type="hidden" value="#{food.id}" name="foodId")
+                button(type="submit") Delete
 
     a(href="/add_food"): button Add item
