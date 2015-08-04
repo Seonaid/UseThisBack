@@ -1,9 +1,33 @@
 extends layout
 
 block content
-    .bckground
-        .inner
-            h1= title
-            p Welcome to #{title}
+    .inner
+        h1= title
+        p Welcome to #{title}
 
-            a(href="/register") Register
+    .parallax-container
+        .parallax
+          img(src="images/IMG_0052.jpg", width="100%")
+
+      
+      .section(class="white")
+        .row
+          h2(class="header green-text text-darken-3") Parallax
+          p(class="grey-text text-darken-3 lighten-3") Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.
+          p: a(href="/register") Register
+          p: a(href="/login") Log In
+      
+      .parallax-container
+        .parallax
+          img(src="images/IMG_0693.jpg", width="100%")
+
+
+          
+      .section(class="white")
+        .row
+          h2(class="header") Second Paragraph
+          p(class="grey-text text-darken-3 lighten-3") Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.
+
+      .parallax-container
+        .parallax
+          img(src="images/IMG_0708.jpg", width="100%")
