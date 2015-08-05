@@ -5,6 +5,13 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/materialize.css')
   body
+    nav
+      .nav-wrapper(class="green darken-2")
+        a(href="/", class="brand-logo center") UseThis
+        ul(id="nav-mobile", class="right hide-on-med-and-down")
+          li: a(href="/register") Register
+          li: a(href="/login") Login
+
     block content
 
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')

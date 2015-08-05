@@ -1,33 +1,56 @@
 extends layout
 
 block content
-    .inner
-        h1= title
-        p Welcome to #{title}
+  .container
 
-    .parallax-container
-        .parallax
-          img(src="images/IMG_0052.jpg", width="100%")
+    .row
+      .col(class ="l12")
+        .card-panel(class="green darken-3 quote center")
+          span(class="white-text") At #{title}, we make meal planning easier... 
+            | And save you money in the process.
+
+    h2(class="header green-text text-darken-3") Quick! What's in your fridge?
+    | Look at these beautiful vegetables, just waiting to be made into dinner. We bet you've got some too.
+    p But we've got a secret to tell you.
+    | 
+    p If you're like most North Americans, you're probably losing several hundred dollars a year in discarded food. If you're also like most North Americans, you'd like to do something about that.
+    | You know meal planning is a good idea, and you may even have tried it a few times, but it just doesn't stick. You might even have tried one of those meal planning services.
+    p Maybe you've got too many things going on in the evenings, and the task of figuring out who is going to be where on Thursday night is too hard to think about on Sunday. Maybe you like to leave yourself open for the last minute invitation. And maybe you don't like having to cook a new recipe every evening.
+    p 
+
+  .parallax-container
+    .parallax
+      img(src="images/IMG_0052.jpg", width="100%")
+
+    
+  .container(class="white")
+    .row
+      h2(class="header green-text text-darken-3") We Can Help
+      p UseThis provides meal planning with maximum flexibility. We help you keep track of what is in your fridge (and pantry and freezer), so that you can plan just far enough ahead. You don't really need to know what you're having for dinner on Thursday. You need to know what you're having this evening. 
+      p What's more, with UseThis, you can rely on your standbys for everyday use and save the fancy recipes for days when you've got more time and energy. If you've already got a good set of meals in regular rotation, what you need to know is whether you're missing an ingredient. 
+      p When you put something in your fridge, add it to the app, with a use by date. Then, when you need to figure out what's for dinner, you can take a peek in your fridge from wherever you are.
+      p 
+      p: a(href="/register") Register
+      p: a(href="/login") Log In
+  
+  .parallax-container
+    .parallax
+      img(src="images/IMG_0693.jpg", width="100%")
+
 
       
-      .section(class="white")
-        .row
-          h2(class="header green-text text-darken-3") Parallax
-          p(class="grey-text text-darken-3 lighten-3") Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.
-          p: a(href="/register") Register
-          p: a(href="/login") Log In
-      
-      .parallax-container
-        .parallax
-          img(src="images/IMG_0693.jpg", width="100%")
+  .container(class="white")
+    .row
+      h2(class="header green-text text-darken-3") What About Leftovers?
+      p(class="grey-text text-darken-3 lighten-3") We're big fans of leftovers at UseThis. It makes us sad when we bring something home in one of those opaque containers and then forget about it at the back of the fridge. We could have had awesome lunch instead of guilty throwing out!
+      p We have an optional evening prompt to ask you what you had for dinner, take the ingredients out (if you used any) and add the leftovers to your inventory. That way, you will know if you don't even need to cook at all the day after tomorrow!
 
+  .parallax-container
+    .parallax
+      img(src="images/IMG_0708.jpg", width="100%")
 
-          
-      .section(class="white")
-        .row
-          h2(class="header") Second Paragraph
-          p(class="grey-text text-darken-3 lighten-3") Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.
-
-      .parallax-container
-        .parallax
-          img(src="images/IMG_0708.jpg", width="100%")
+   .container(class="white")
+      .row
+        h2(class="header green-text text-darken-3") Not Just for Dinner
+        p(class="grey-text text-darken-3 lighten-3") If what you really need is to keep track of when you need to buy more flour, we've got you covered there, too. When you use the last of something, you can easily swipe it over onto the shopping list for the next time you're at the store. 
+        p At three in the afternoon, when you look in your fridge, you can say, "Hey! I think I want potatoes with that!" and add those to the list too.

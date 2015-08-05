@@ -1,12 +1,13 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
 a {
   color: #00B7FF;
 }
 
-.parllax .parallax-container {
-  height: 220px;
+.parallax .parallax-container {
+  height: 150px;
+}
+
+.quote {
+  font-size: 1.5em;
+  font-variant: italic;
 }
